@@ -1,6 +1,6 @@
 {
   "name": "@iovalkey/commands",
-  "version": "0.2.0",
+  "version": "0.1.0",
   "description": "Valkey commands",
   "main": "dist/index.js",
   "files": [
@@ -35,7 +35,7 @@
   "homepage": "https://github.com/iovalkey/commands",
   "devDependencies": {
     "@types/node": "^22.10.9",
-    "chai": "^5.1.2",
+    "chai": "^4.0.0",
     "eslint": "^9.18.0",
     "iovalkey": "^0.2.2",
     "mocha": "^11.1.0",
