@@ -12,7 +12,7 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "module": "commonjs",
-    "outDir": "./built"
+    "outDir": "./dist"
   },
   "include": ["./lib/**/*"]
 }

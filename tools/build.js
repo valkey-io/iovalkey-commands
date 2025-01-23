@@ -1,21 +1,23 @@
+'use strict'
+
 const fs = require('fs')
 const path = require('path')
 const stringify = require('safe-stable-stringify')
 const commandPath = path.join(__dirname, '..', 'lib', 'commands.json')
-const redisCommands = require('..')
+const valkeyCommands = require('..')
 
-const Redis = require('ioredis')
-const redis = new Redis(process.env.REDIS_URI)
+const Valkey = require('iovalkey')
+const valkey = new Valkey(process.env.REDIS_URI)
 
-redis.command().then(function (res) {
-  redis.disconnect()
+valkey.command().then(function (res) {
+  valkey.disconnect()
 
   // Find all special handled cases
   const commands = res.reduce(function (
     prev,
     [commandName, arity, flags, keyStart, keyStop, step]
   ) {
-    const handled = String(redisCommands.getKeyIndexes).includes(
+    const handled = String(valkeyCommands.getKeyIndexes).includes(
       `"${commandName}"`
     )
     const isMovableKey = flags.includes('movablekeys')
@@ -41,7 +43,7 @@ redis.command().then(function (res) {
   },
   {})
 
-  // Future proof. Redis might implement this at some point
+  // Future proof. Valkey might implement this at some point
   // https://github.com/antirez/redis/pull/2982
   if (!commands.quit) {
     commands.quit = {
